@@ -3,8 +3,8 @@ fmt.js - sprintf done right
 
 Or so I hope.
 
-fmt is a simple function that takes a format string, an object containing
-key/value pairs, and does some interpolation.
+`fmt` is a simple function that takes a format string and an object containing
+key/value pairs and does some interpolation.
 
 A few examples:
 

@@ -29,7 +29,7 @@ var fmt = function (fmt_str, args) {
             }
 
             // scan for the closing '}'
-            for (var j = i; j < l; ++j) {
+            for (var j = i + 2; j < l; ++j) {
                 if (fmt_str[j] === CLOSE) {
                     if (fmt_str[j - 1] === '\\') {
                         continue;
