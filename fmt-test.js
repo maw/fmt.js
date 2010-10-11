@@ -3,15 +3,11 @@ var sys = require("sys");
 var fmt = require("./fmt").fmt;
 
 var check = function (expected, got) {
-    var out = fmt("expected:\t>>>%{e}<<<\ngot\t\t\t>>>%{g}<<<\nsuccess:\t\t%{s}",
-                  {e: expected, g: got, s: (expected === got)});
-    sys.debug(out); 
+    var out = "expected:\t>>>" + expected + "<<<\n" +
+        "       got:\t\t>>>" + got + "<<<\n" +
+        "       success:\t\t" + (expected === got);
+    sys.debug(out);
 
-    // If fmt is really broken, commenting out the previous several
-    // lines and using these instead may help:
-    // sys.debug("expected:\t" + expected);
-    // sys.debug("got:\t\t" + got);
-    // sys.debug("success:\t\t" + (expected === got));
 };
 
 var e, g;
