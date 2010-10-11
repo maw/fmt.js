@@ -6,7 +6,7 @@ Or so I hope.
 `fmt` is a simple function that takes a format string and an object containing
 key/value pairs and does some interpolation.
 
-A few examples:
+Examples speak louder than words, so here's a few:
 
     michaelwolf@fountain:~/devel/fmt.js <master> $ node
     Type '.help' for options.
