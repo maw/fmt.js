@@ -16,15 +16,16 @@ A few examples:
     { w: 'world', pi: 3.14159, '}': 'closing brace' }
     node> fmt("hello %{w}", args);
     'hello world'
-    node> fmt("pumpkin %{pi}", args);
-    'pumpkin 3.14159'
-    node> fmt("c uses { and %{\}}; lisp uses ( and )", args);
-    'c uses { and }; lisp uses ( and )'
+    node> fmt("one pumpkin %{pi} and one gillies meat %{pi} please", args);
+    'one pumpkin 3.14159 and one gillies meat 3.14159 please'
+    node> fmt("c uses opening and closing %{\\}}s; lisp uses parenthesis", args);
+    'c uses opening and closing closing braces; lisp uses parenthesis'
 
 Pretty convenient.  Anything that's a valid key in a javascript object
 can go between `"%{"` and `"}"`, although as a matter of style and 
 maintainability,  you would probably do well to limit yourself to keys
-matching `/[a-zA-Z][a-zA-Z0-9_]*/`.
+matching `/[a-zA-Z][a-zA-Z0-9_]*/`.  In particular, it gets ugly when you
+use keys containing `}`.
 
 Issues:
 

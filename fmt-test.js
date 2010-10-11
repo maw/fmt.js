@@ -29,8 +29,8 @@ var args = {
     pi: 3.14159,
     "several words": "a few words",
     "true": true,
-    "{": "{",
-    "}": "}"
+    "{": "opening brace",
+    "}": "closing brace"
 };
 
 e = "an unchanged string";
@@ -90,9 +90,12 @@ e = "don't \" me on that";
 g = fmt("don't %{quote} me on that", args);
 check(e, g);
 
-// This fails; we could just define it away, but shouldn't
-e = "c uses { and } and lisp uses ( and )";
-g = fmt("c uses %{{} and %{\}} and lisp uses ( and )", args);
+e = "closing brace";
+g = fmt("%{\\}}", args);
+check(e, g);
+
+e = "c uses opening braces and closing braces; lisp uses parenthesis";
+g = fmt("c uses %{{}s and %{\\}}s; lisp uses parenthesis", args);
 check(e, g);
 
 e = "aliens from outer space";

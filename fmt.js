@@ -5,11 +5,13 @@ var fmt = function (fmt_str, args) {
     var SIGIL = '%',
         OPEN = '{',
         CLOSE = '}';
+    var BACKSLASH = "\\";
     
     var out = [];
     var first = 0;
-
+    
     var l = fmt_str.length;
+    
     for (var i = 0; i < l; ++i) {
         var c0 = fmt_str[i],
             c1 = fmt_str[i + 1];
@@ -22,27 +24,37 @@ var fmt = function (fmt_str, args) {
                 first = i;
                 continue;
             }
-
+            
             // % followed by anything other than '{' is not allowed
             if (c1 !== OPEN) {
                 throw "% must be followed by either '%' or '{'";
             }
 
+            var escaped = false;
             // scan for the closing '}'
             for (var j = i + 2; j < l; ++j) {
                 if (fmt_str[j] === CLOSE) {
-                    if (fmt_str[j - 1] === '\\') {
+                    // debug("current char: " + fmt_str[j]);
+                    // debug("penultimate char: " + fmt_str[j - 1]);
+                    if (fmt_str[j - 1] === BACKSLASH) {
+                        //////// if (fmt_str[j - 1] === CLOSE) {
+                        debug("current: " + fmt_str[j]);
+                        debug("pencurrent: " + fmt_str[j - 1]);
+                        escaped = true;
                         continue;
                     }
                     var key = fmt_str.substring(i + 2, j);
+                    if (escaped === true) {
+                        key = key.replace("\\}", "}");
+                    }
                     debug("key: " + key);
-
+                    
                     // record whatever was between the previous match, if any,
                     // and "%{"
                     var prev = fmt_str.substring(first, i);
                     debug("adding " + prev);
                     out.push(prev);
-
+                    
                     // interpolate
                     debug("adding " + args[key]);
                     out.push(args[key]);
