@@ -1,18 +1,18 @@
+/*global exports: false */
+/*jslint onevar: false */
 var fmt = function (fmt_str, args) {
     // var debug = require("sys").debug;
     var debug = function (n) { };
     
     var SIGIL = '%',
         OPEN = '{',
-        CLOSE = '}';
-    var BACKSLASH = "\\";
-    
+        CLOSE = '}',
+        BACKSLASH = "\\";
     var out = [];
     var first = 0;
-    
     var l = fmt_str.length;
     
-    for (var i = 0; i < l; ++i) {
+    for (var i = 0; i < l; i += 1) {
         var c0 = fmt_str[i],
             c1 = fmt_str[i + 1];
         switch (c0) {
@@ -20,7 +20,7 @@ var fmt = function (fmt_str, args) {
             // "%%" resolves to %
             if (c1 === '%') {
                 out.push(fmt_str.substr(first, i + 1));
-                ++i;
+                i += 1;
                 first = i;
                 continue;
             }
@@ -32,7 +32,7 @@ var fmt = function (fmt_str, args) {
 
             var escaped = false;
             // scan for the closing '}'
-            for (var j = i + 2; j < l; ++j) {
+            for (var j = i + 2; j < l; j += 1) {
                 if (fmt_str[j] === CLOSE) {
                     // debug("current char: " + fmt_str[j]);
                     // debug("penultimate char: " + fmt_str[j - 1]);
