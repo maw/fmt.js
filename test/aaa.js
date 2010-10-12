@@ -12,10 +12,12 @@ $(document).ready(function () {
         "several words": "a few words",
         "true": true,
         "{": "opening brace",
-        "}": "closing brace"
+        "}": "closing brace",
+        "\n": "or",
+        '";;\'  \'\n\b\b\b\t': "this is ridiculous"
     };
     
-    var check = equals;
+    var check = function (e, g) { return equals(g, e); };
     var e, g;
     
     test("unchanged string", function () {
@@ -74,11 +76,9 @@ $(document).ready(function () {
     });
     
     test("keys you definitely shouldn't use", function () {
-        
         e = "don't quote me on that";
         g = fmt("don't %{\"} me on that", args);
         check(e, g);
-
         e = "don't \" me on that";
         g = fmt("don't %{quote} me on that", args);
         check(e, g);
@@ -94,7 +94,14 @@ $(document).ready(function () {
         e = "aliens from outer space";
         g = fmt("aliens from outer %{ }", args);
         check(e, g);
+        
+        e = "one line or two";
+        g = fmt("one line %{\n} two", args);
+        check(e, g);
 
+        e = "this is ridiculous";
+        g = fmt("%{\";;'  '\n\b\b\b\t}", args);
+        check(e, g);
     });
     
     // This is undefined for now, so we don't test it.
