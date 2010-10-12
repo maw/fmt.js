@@ -76,9 +76,10 @@ var fmt = function (fmt_str, args) {
             break;
         }
     }
-    var last = fmt_str.substring(first, i);
-    debug("adding " + last);
-    out.push(last);
+    
+    var last_fragment = fmt_str.substring(first, i);
+    debug("adding " + last_fragment);
+    out.push(last_fragment);
     
     return out.join("");
 };
