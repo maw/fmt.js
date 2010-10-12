@@ -60,7 +60,7 @@ var fmt = function (fmt_str, args) {
                     out.push(args[key]);
                                         
                     i = j + 1;
-                    first = i ;
+                    first = i;
                     
                     break;
                 }
@@ -88,7 +88,7 @@ try {
 } catch (e) {
     switch (e.name) {
     case "ReferenceError":
-        ; // nothing to do here
+        // nothing to do here
         break;
     default:
         throw e;
