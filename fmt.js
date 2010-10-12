@@ -1,3 +1,7 @@
+// fmt.js - (c) 2010 Michael Wolf
+// fmt.js is freely distributable under the terms of the BSD license.
+// For more information, see http://github.com/maw/fmt.js
+
 /*global exports: false */
 /*jslint onevar: false */
 var fmt = function (fmt_str, args) {
