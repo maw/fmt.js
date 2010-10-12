@@ -83,4 +83,14 @@ var fmt = function (fmt_str, args) {
     return out.join("");
 };
 
-exports.fmt = fmt;
+try {
+    exports.fmt = fmt;
+} catch (e) {
+    switch (e.name) {
+    case "ReferenceError":
+        ; // nothing to do here
+        break;
+    default:
+        throw e;
+    }
+}
