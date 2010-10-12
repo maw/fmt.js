@@ -36,3 +36,8 @@ Issues:
   don't do it.
 
 * The error reporting isn't fantastic.
+
+* I'm told a number of the tests fail on IE (not sure which version, and
+  I don't have the means to easily test this in any case).
+
+* Maybe it would be a win to cache the results of parsing format strings. 
