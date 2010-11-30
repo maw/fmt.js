@@ -126,4 +126,11 @@ $(document).ready(function () {
             check(e, "% must be followed by either '%' or '{'");
         }
     });
+
+    test("floating point", function () {
+        // gloating point always seems dicey to me anyway, but ...
+        var g6 = fmt("%{pi}", {pi: 3.14159256});
+        e = "3.14159256";
+        check(e, g6);
+    });
 });

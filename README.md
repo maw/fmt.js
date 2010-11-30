@@ -21,11 +21,12 @@ Examples speak louder than words, so here's a few:
     node> fmt("c uses opening and closing %{\\}}s; lisp uses parenthesis", args);
     'c uses opening and closing closing braces; lisp uses parenthesis'
 
-Pretty convenient.  Anything that's a valid key in a javascript object
-can go between `"%{"` and `"}"`, although as a matter of style and 
-maintainability,  you would probably do well to limit yourself to keys
-matching `/[a-zA-Z][a-zA-Z0-9_]*/`.  In particular, it gets ugly when you
-use keys containing `}`.
+Pretty convenient.  Anything, with one exception, that's a valid key in a
+javascript object can go between `"%{"` and `"}"`.  The exception is `,`, which
+is used to separate additional formatting directives from keys.  However, as a
+matter of style and maintainability, you would probably do well to limit
+yourself to keys matching `/[a-zA-Z][a-zA-Z0-9_]*/`.  In particular, it gets
+ugly when you use keys containing `}`.
 
 Issues:
 
@@ -34,10 +35,15 @@ Issues:
 * It's unclear whether `"%{}"` should "expand" into into `""`, throw an
   exception, or do something else entirely.  For now, it's undefined;
   don't do it.
-
+  
+  (One idea: use %{} for one-off substitutions:
+    fmt("hello %{}", "world"); => "hello world")
+  
 * The error reporting isn't fantastic.
 
 * I'm told a number of the tests fail on IE (not sure which version, and
   I don't have the means to easily test this in any case).
 
-* Maybe it would be a win to cache the results of parsing format strings. 
+* Maybe it would be a win to cache the results of parsing format strings.
+
+* Maybe some extra magic added to the placeholders would be useful
