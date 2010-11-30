@@ -37,7 +37,7 @@ Issues:
   don't do it.
   
   (One idea: use %{} for one-off substitutions:
-    fmt("hello %{}", "world"); => "hello world")
+    `fmt("hello %{}", "world");` => `"hello world"`)
   
 * The error reporting isn't fantastic.
 
