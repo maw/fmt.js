@@ -1,3 +1,7 @@
+Note: This code predates [template strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) by several years.  You
+should probably use them instead.  This code was never very good
+in any case.
+
 fmt.js - sprintf done right
 ===========================
 
